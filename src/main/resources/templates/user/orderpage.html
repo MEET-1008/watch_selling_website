@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}"
+>
+<head>
+    <title data-th-text="${user.username}+' |  Dashboard'">
+        order Page
+    </title>
+</head>
+<body>
+<div id="content">
+    <!-- sidebar -->
+
+    <!-- user is logged in : sidebar -->
+
+    <div th:if="${user}">
+        <div data-th-replace="~{user/sidebar :: sidebar}"></div>
+    </div>
+
+    <div class="sm:pl-64 pt-20" style="height: 1000px">
+        <div class=" flex-col items-center">
+            <h1 class="text-5xl mb-8 mr-7 text-center">Welcome to order page</h1>
+            <form
+                    method="post"
+                    data-th-action="@{'/user/product/order/save-order'}"
+                    novalidate
+            >
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="ml-8 px-8">
+
+
+                        <h2
+                                class=" font-manrope my-8 font-bold text-3xl leading-10 text-center pb-6 border-b border-gray-200 ">
+                            Fill Address
+                        </h2>
+                        <div class="grid md:grid-cols-2 md:gap-6">
+                            <div class="relative z-0 w-full mb-5 group">
+                                <input type="text" name="firstname" id="floating_first_name"
+                                       class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                       placeholder=" " required/>
+                                <label for="floating_first_name"
+                                       class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First
+                                    name</label>
+                            </div>
+                            <div class="relative z-0 w-full mb-5 group">
+                                <input type="text" name="lastname" id="floating_last_name"
+                                       class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                       placeholder=" " required/>
+                                <label for="floating_last_name"
+                                       class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Last
+                                    name</label>
+                            </div>
+                        </div>
+                        <div class="relative z-0 w-full mb-5 group">
+                            <input type="email" name="email" id="floating_email"
+                                   class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                   placeholder=" " required/>
+                            <label for="floating_email"
+                                   class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email
+                                address</label>
+                        </div>
+                        <div class="relative z-0 w-full mb-5 group">
+                            <input type="number" name="phone" id="floating_repeat_password"
+                                   class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                   placeholder=" " required/>
+                            <label for="floating_repeat_password"
+                                   class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">phone
+                                Number</label>
+                        </div>
+                        <div class="relative z-0 w-full mb-5 group">
+                            <input type="text" name="address" id="floating_password"
+                                   class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                   placeholder=" " required/>
+                            <label for="floating_password"
+                                   class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Address</label>
+                        </div>
+
+
+                    </div>
+                    <div>
+                        <div class="p-8  rounded-3xl w-full group transition-all duration-500 hover:border-gray-400 ">
+                            <h2
+                                    class="font-manrope font-bold text-3xl leading-10 text-black pb-6 border-b border-gray-200 ">
+                                Order Summary
+                            </h2>
+                            <div class="data py-6 border-b border-gray-200">
+                                <div class="flex items-center justify-between gap-4 mb-5">
+                                    <p class="font-normal text-lg leading-8 text-gray-400 transition-all duration-500 group-hover:text-gray-700">
+                                        Product Cost</p>
+                                    <p class="font-medium text-lg leading-8 dark:text-emerald-500 "> [[${orderamount}]]</p>
+                                </div>
+                                <div class="flex items-center justify-between gap-4 mb-5">
+                                    <p class="font-normal text-lg leading-8 text-gray-400 transition-all duration-500 group-hover:text-gray-700">
+                                        Shipping</p>
+                                    <p class="font-medium text-lg leading-8 text-gray-600">Free</p>
+                                </div>
+                                <div class="flex items-center justify-between gap-4 mb-5 ">
+                                    <p class="font-normal text-lg leading-8 text-gray-400 transition-all duration-500 group-hover:text-gray-700 ">
+                                        Coupon Code</p>
+                                    <p class="font-medium text-lg leading-8 text-emerald-500">#APPLIED</p>
+                                </div>
+                                <div class="flex items-center justify-between gap-4 ">
+                                    <p class="font-normal text-lg leading-8 text-gray-400 transition-all duration-500 group-hover:text-gray-700 ">
+                                        GST</p>
+                                    <p class="font-medium text-lg leading-8 dark:text-emerald-500 "> [[${gst}]]</p>
+                                </div>
+                            </div>
+                            <div class="total flex items-center justify-between pt-6">
+                                <p class="font-normal text-xl leading-8 text-black ">Subtotal</p>
+                                <h5 class="font-manrope font-bold text-2xl leading-9 text-indigo-600">[[${finalamount}]]</h5>
+                            </div>
+                        </div>
+
+                        <div class="mr-8">
+                            <h3 class="mb-5 mt-8 text-lg font-medium text-gray-900 dark:text-white">order type </h3>
+                            <ul class="grid w-full gap-6 md:grid-cols-2">
+                                <li>
+                                    <input type="radio" id="hosting-small" name="paymentMode" value="COD"
+                                           class="hidden peer" required/>
+                                    <label for="hosting-small"
+                                           class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                        <div class="block">
+                                            <div class="w-full text-lg font-semibold">COD</div>
+
+                                        </div>
+
+                                    </label>
+                                </li>
+                                <li>
+                                    <input type="radio" id="hosting-big" name="paymentMode" value="ONLINE"
+                                           class="hidden peer">
+                                    <label for="hosting-big"
+                                           class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                        <div class="block">
+                                            <div class="w-full text-lg font-semibold">Online Payment</div>
+
+                                        </div>
+
+                                    </label>
+                                </li>
+
+                            </ul>
+
+
+
+                                <button type="submit"
+
+                                   class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">payment </button>
+
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</div>
+</div>
+
+<script>
+    console.log("this is profile page");
+</script>
+</body>
+</html>

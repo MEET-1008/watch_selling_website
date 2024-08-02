@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}"
+>
+<head>
+    <title data-th-text="${user.username}+' |  Profile'">
+        Profile Page
+    </title>
+</head>
+<body>
+<div id="content">
+    <!-- sidebar -->
+
+    <!-- user is logged in : sidebar -->
+
+    <div th:if="${user}">
+        <div data-th-replace="~{user/sidebar :: sidebar}"></div>
+    </div>
+
+    <div class="sm:pl-64 pt-20" style="height: 1000px">
+        <div class="flex justify-center flex-col items-center">
+            <!-- component -->
+            <div class="py-14 px-4 w-full md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
+                <!--- more free and premium Tailwind CSS components at https://tailwinduikit.com/ --->
+                <div><h1 class="text-center text-green-600 text-5xl"><i class="fa-solid fa-circle-check"></i> order
+                    place successfully...!</h1>
+                    <div class="flex justify-start item-start space-y-2 flex-col">
+                        <h1 class=" pt-5 text-3xl dark:text-white lg:text-4xl font-semibold  leading-7 lg:leading-9 text-gray-800 ">
+                            Order # [[${orderid}]] </h1>
+                        <p class="text-base pb-5 dark:text-gray-300 font-medium leading-6 text-gray-600">21st Mart 2021
+                            at 10:34
+                            PM</p>
+                    </div>
+                </div>
+
+
+                <div class="grid grid-cols-2  mt-5 gap-2">
+                    <div>
+
+
+                        <div class="w-full  overflow-x-auto shadow-md sm:rounded-lg">
+
+
+                            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-16 py-3">
+                                        <span class="sr-only">Image</span>
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Product
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Qty
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Price
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Total Price
+                                    </th>
+                                </tr>
+
+                                </thead>
+                                <tbody>
+                                <tr
+                                        data-th-each="order , c:${order}"
+                                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-800 dark:hover:bg-gray-800 text-lg">
+                                    <td class="p-4">
+                                        <img data-th-src="@{*{order.product.productImage}}"
+                                             class="w-16 md:w-32 max-w-full max-h-full rounded-lg"
+                                             alt="Apple Watch">
+                                    </td>
+                                    <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white uppercase"
+                                        data-th-text="*{order.id}">
+                                        Apple Watch
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center">
+
+                                            <div>
+                                                <div type="number" id="first_product"
+                                                     class="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                     required data-th-text="*{order.quantity}"/>
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white"
+                                        data-th-text="*{  '₹ ' + order.product.price}">
+
+                                    </td>
+                                    <td class="px-6 py-4 text-white font-bold"
+                                        data-th-text="*{(order.product.price) * (order.quantity) }">
+
+                                    </td>
+                                </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex flex-col xl:flex-row jusitfy-center items-stretch w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
+                            <div class="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
+
+
+
+
+                                <div class=" justify-center flex-row md:flex-row  items-stretch w-full space-y-4 md:space-y-0 md:space-x-6 xl:space-x-8">
+                                    <div class="flex  flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 dark:bg-gray-800 space-y-6">
+
+<!--                                        <h3 class="text-xl  dark:text-white font-semibold leading-5 text-gray-800">-->
+<!--                                            Summary</h3>-->
+                                        <div class="flex justify-center items-center w-full space-y-4 flex-col border-gray-200 border-b pb-4">
+                                            <div class="flex justify-between w-full">
+                                                <p class="text-base dark:text-white leading-4 text-gray-800">
+                                                    Subtotal</p>
+                                                <p class="text-base dark:text-gray-300 leading-4 text-gray-600"> 25632</p>
+                                            </div>
+                                            <div class="flex justify-between items-center w-full">
+                                                <p class="text-base dark:text-white leading-4 text-gray-800">Discount
+                                                    <span
+                                                            class="bg-gray-200 p-1 text-xs font-medium dark:bg-white dark:text-gray-800 leading-3 text-gray-800">STUDENT</span>
+                                                </p>
+                                                <p class="text-base dark:text-gray-300 leading-4 text-gray-600">-$28.00
+                                                    (50%)</p>
+                                            </div>
+                                            <div class="flex justify-between items-center w-full">
+                                                <p class="text-base dark:text-white leading-4 text-gray-800">
+                                                    Shipping</p>
+                                                <p class="text-base dark:text-gray-300 leading-4 text-gray-600">
+                                                    $8.00</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between items-center w-full">
+                                            <p class="text-base dark:text-white font-semibold leading-4 text-gray-800">
+                                                Total</p>
+                                            <p class="text-base dark:text-gray-300 font-semibold leading-4 text-gray-600">
+                                                $36.00</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col justify-center px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 dark:bg-gray-800 space-y-6">
+                                        <h3 class="text-xl dark:text-white font-semibold leading-5 text-gray-800">
+                                            Shipping</h3>
+                                        <div class="flex justify-between items-start w-full">
+                                            <div class="flex justify-center items-center space-x-4">
+                                                <div class="w-8 h-8">
+                                                    <img class="w-full h-full" alt="logo"
+                                                         src="https://i.ibb.co/L8KSdNQ/image-3.png"/>
+                                                </div>
+                                                <div class="flex flex-col justify-start items-center">
+                                                    <p class="text-lg leading-6 dark:text-white font-semibold text-gray-800">
+                                                        DPD
+                                                        Delivery<br/><span
+                                                            class="font-normal">Delivery with 24 Hours</span></p>
+                                                </div>
+                                            </div>
+                                            <p class="text-lg font-semibold leading-6 dark:text-white text-gray-800">
+                                                $8.00</p>
+                                        </div>
+                                        <div class="w-full flex justify-center items-center">
+                                            <button class="hover:bg-black dark:bg-white dark:text-gray-800 dark:hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">
+                                                View Carrier Details
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    console.log("this is profile page");
+</script>
+</body>
+</html>

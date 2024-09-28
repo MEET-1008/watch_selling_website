@@ -18,16 +18,16 @@
 
     <div class="sm:pl-64 pt-20" style="height: 1000px">
         <div class="grid grid-cols-12">
-            <div class="col-span-3"></div>  
+            <div class="col-span-3"></div>
             <div class="col-span-12 md:col-span-6">
                 <div
-                        class="card block p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-300"
+                        class="card block p-6 bg-white border border-gray-200 rounded-lg shadow  dark:bg-gray-800 dark:border-gray-700 "
                 >
                     <div data-th-replace="~{message::messagebox}"></div>
 
-                    <h1 class="text-2xl font-semibold">Add New Contact</h1>
+                    <h1 class="text-2xl font-semibold">Add New Product</h1>
                     <p class="text-gray-500">
-                        This product will be stored on cloud, you can direct email this
+                        This contact will be stored on cloud, you can direct email this
                         client from scm...
                     </p>
 
@@ -37,39 +37,41 @@
                             data-th-object="${product}"
                             method="POST"
                             enctype="multipart/form-data"
-                            novalidate
+
 
                     >
-
 
                         <!--                         profile photo-->
 
                         <div class="flex items-center ">
                             <div class="">
                                 <img id='preview_img' class="h-16 w-16 object-cover rounded-full"
-                                     src="https://media.licdn.com/dms/image/D4E03AQHXMgsdJTn49Q/profile-displayphoto-shrink_800_800/0/1709696800119?e=2147483647&v=beta&t=hTmfvyxRxBnaGcPvEuu9G5KwUmyZnhu473mtJOY8r9A"
+                                     src="https://media.istockphoto.com/id/1312319385/vector/camera-photography-logo-icon-design-vector.jpg?s=612x612&w=0&k=20&c=3UAxKf0J4dgrqjRIrJM8sbfXBAVgrgLfGOGxIZxa0U4="
                                      alt="Current profile photo"/>
                             </div>
 
-                            <label class="rounded-full">
-                                <input type="file"  data-th-field="*{productImage}" onchange="loadFile(event)"  class="pl-8  ml-0" required/> </label>
-
-
+                            <label class="rounded-full"><input type="file" onchange="loadFile(event)"
+                                                               data-th-field="*{productImage}"
+                                                               class="pl-8  ml-0"/> </label>
                         </div>
 
+                        <p
+                                class="text-red-500"
+                                data-th-if="${#fields.hasErrors('productImage')}"
+                                data-th-errors="*{productImage}"
+                        >
+                            Invalid Name
+                        </p>
+
                         <!--                        name field -->
-                        <label
+                        <label for="website-admin"
                                class=" mt-5 block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name </label>
                         <div class="flex">
                             <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                               <i class="fa-regular fa-address-book w-4 h-4"></i>
-                            </span>
-                            <label>
-                                <input type="text" data-th-field="*{name}"
-                                       class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                       placeholder="meet vaghasiya " required>
-                            </label>
-
+<i class="fa-solid fa-file-signature"></i>                            </span>
+                            <input type="text" id="website-admin" data-th-field="*{name}"
+                                   class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                   placeholder="product name" required>
 
                         </div>
                         <p
@@ -81,17 +83,17 @@
                         </p>
 
 
-                        <!--                        price  field -->
-                        <label
+                        <!--                        phone Number field -->
+                        <label for="website-admin"
                                class=" mt-5 block mb-2 text-sm font-medium text-gray-900 dark:text-white">price </label>
                         <div class="flex">
                             <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-e-0 border-gray-300 border-e-0 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                               <i class="fa-regular fa-price w-4 h-4"></i>
+<i class="fa-solid fa-tags"></i>
                             </span>
                             <label>
                                 <input type="number" data-th-field="*{price}"
                                        class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                       placeholder="100" required>
+                                       placeholder="100 /-" required>
                             </label>
 
                         </div>
@@ -104,20 +106,19 @@
                         </p>
 
 
-                        <!-- description -->
+                        <!-- address -->
 
                         <div class="mb-3 mt-5">
                             <label
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                            >Contact Description</label
-                            >
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                description
+                            </label>
                             <textarea
                                     data-th-field="*{description}"
                                     rows="2"
                                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Write about your product" required
+                                    placeholder="product description" required
                             ></textarea>
-                        </div>
                             <p
                                     class="text-red-500"
                                     data-th-if="${#fields.hasErrors('description')}"
@@ -125,22 +126,8 @@
                             >
                                 Invalid Name
                             </p>
-
-
-
-
-                        <!-- favorite checkbox -->
-                        <div class="flex items-center mb-3">
-                            <input
-                                    data-th-field="*{favorite}"
-                                    type="checkbox"
-                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                            />
-                            <label
-                                    class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                            >Is this product is your favorite one ?</label
-                            >
                         </div>
+
 
                         <!--                        button -->
                         <div class="button-container text-center">
@@ -148,7 +135,7 @@
                                     type="submit"
                                     class="px-3 py-2 dark:bg-green-600 hover:dark:bg-blue-700 rounded bg-green-800 text-white"
                             >
-                                Add Contact
+                                Add Product
                             </button>
                             <button
                                     type="reset"

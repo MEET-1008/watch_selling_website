@@ -48,6 +48,7 @@
 
                     </thead>
                     <tbody>
+                    <div data-th-if="${carts.size() != 0}">
                     <tr
                             data-th-each="cart , c:${carts}"
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-800 dark:hover:bg-gray-800 text-lg">
@@ -83,33 +84,41 @@
                         <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white" data-th-text="*{  '₹  ' + cart.product.price}">
 
                         </td>
-                        <td class="px-6 py-4 text-white font-bold" data-th-text="*{cart.totalPrice}">
+                        <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white uppercase" data-th-text="*{cart.totalPrice}">
 
                         </td>
                     </tr>
 
 
-                        <tr      class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-800 dark:hover:bg-gray-800 text-lg pt-5">
+                        <tr      class="bg-white border-b dark:bg-gray-800 dark:border-gray-700  dark:hover:bg-gray-800 text-lg pt-5">
 
                             <td>  </td>
                             <td>  </td>
                             <td>  </td>
 
-                            <td class=" px-6 py-4 text-white font-semibold"> Total Amount </td>
-                            <td class=" px-6 py-4 text-white font-semibold" >[[${totalorderAmount}]]  </td>
+                            <td class=" px-6 py-4 font-semibold text-gray-900 dark:text-white uppercase"> Total Amount </td>
+                            <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white uppercase" >[[${totalorderAmount}]]  </td>
                         </tr>
-                    <tr      class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-800 dark:hover:bg-gray-800 text-lg pt-5">
+                    <tr      class="bg-white border-b dark:bg-gray-800 dark:border-gray-700  dark:hover:bg-gray-800 text-lg pt-5">
 
                         <td>  </td>
                         <td>  </td>
                         <td>  </td>
                         <td>  </td>
-                        <td>  <a data-th-href="@{/user/product/order/}" type="submit" > go to payment page </a> </td>
+                        <td>    <a data-th-href="@{/user/product/order/}" type="submit" >   <button type="button" class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 my-5 mb-8">go to payment page</button>
+
+                       </a> </td>
 
                     </tr>
+                    </div>
 
                   </tbody>
+
                 </table>
+                <div data-th-if="${carts.size() == 0 }" class=" text-3xl text-center py-12 bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-800 dark:hover:bg-gray-800 text-lg">
+
+                    Cart is Blank..!
+                </div>
             </div>
 
 

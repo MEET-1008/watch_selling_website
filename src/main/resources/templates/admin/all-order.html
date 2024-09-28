@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}"
+>
+<head>
+    <title data-th-text="${user.username}+' |  Profile'">
+        order Page
+    </title>
+</head>
+<body>
+<div id="content">
+    <!-- sidebar -->
+
+    <!-- user is logged in : sidebar -->
+
+    <div th:if="${user}">
+        <div data-th-replace="~{admin/sidebar :: sidebar}"></div>
+    </div>
+
+    <div class=" w-full sm:pl-64 pt-20" style="height: 1000px">
+        <div class="flex justify-center  flex-col items-center pb-8">
+            <h1 class="text-5xl"> All order page</h1>
+        </div>
+
+
+        <table class="w-full  pt-5 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 px-8"
+        >
+            <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+
+
+            <tr
+            >
+                <th scope="col" class="px-6 py-3 rounded-tl-xl  ">
+                    No:
+                </th>
+                <th scope="col" class="px-6 py-3   ">
+                    Order Id
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    order Date
+                </th>
+                <th scope="col" class="px-6 py-3 ">
+                    Product photo
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Product name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Qty
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Price
+                </th>
+
+                <th scope="col" class="px-6 py-3 rounded-tr-xl">
+                    status
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <div data-th-if="${order1.size() != 0 }">
+
+                <tr class="bg-white dark:bg-gray-800"
+                    data-th-each="order ,C : ${order1}"
+
+                >
+                    <td class="px-6 py-4" data-th-text="*{C.count}"> </td>
+                    <td class="px-6 py-4" data-th-text="*{order.orderId}"> </td>
+                    <td class="px-6 py-4" data-th-text="*{order.orderDate}"> </td>
+
+                    <td class="px-6 py-4">
+                        <img class="w-10 h-10 rounded-full"
+                             data-th-src="@{*{order.product.productImage}}"
+                             alt=" image" src="">
+                    </td>
+
+                    <td class="px-6 py-4" data-th-text="${order.product.name}"> </td>
+                    <!--                <td class="px-6 py-4" data-th-text="*{cart.product.name}"> </td>-->
+
+
+                    <td class="px-6 py-4" data-th-text="*{order.quantity}"> </td>
+
+                    <td class="px-6 py-4" data-th-text="*{order.price * order.quantity} "> </td>
+
+                    <td data-th-text="*{order.status}"> </td>
+                </tr>
+            </div>
+            </tbody>
+        </table>
+
+        <div data-th-if="${order1.size() == 0 }" class=" text-3xl text-center py-12 bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-800 dark:hover:bg-gray-800 text-lg">
+
+            no order..!
+        </div>
+
+    </div>
+</div>
+
+<script>
+    console.log("this is profile page");
+</script>
+</body>
+</html>

@@ -41,12 +41,8 @@ public class RootController {
         User user = userService.getUserByEmail(email);
         model.addAttribute("user", user);
         model.addAttribute("cartCount", cartService.getcountCart(user.getUserid()));
-
-
         List<ProductOrder> allProductOrder = productOrderService.getAllProductOrder();
         model.addAttribute("orderCount", allProductOrder.size());
-
-
 
     }
 }

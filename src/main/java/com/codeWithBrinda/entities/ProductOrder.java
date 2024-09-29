@@ -17,7 +17,6 @@ public class ProductOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-
     private String orderId ;
 
     private String orderDate ;
@@ -38,5 +37,7 @@ public class ProductOrder {
     private String status;
 
     private String paymentMode;
+
+    private String razorPayOrderId;
 
 }
